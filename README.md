@@ -47,6 +47,8 @@
 
 ## CHANGELOG
 ====
+* Version 1.1.1:2016-7-24
+  * 修改bug
 * Version 1.1: 2016-7-24
   * 增加serverManager
 * Version 1.0: 2016-7-24

@@ -36,13 +36,15 @@ from gevent.queue import Queue
 
 class ScraperGeventQueue(object):
     '''
-    A gevent queue for Tmall and JD scraper.
+    A gevent queue for RT-Mart scraper.
      Parameters
      ----------
      scraperClass: class
-      Tmall or JD page scraper for CPP
-     args: list
-      a multi-list for CPP
+      RT-Mart page scraper for CPP
+     categories: list
+      a category list for CPP
+     areas: list
+      a area information list
      gevent_num=100: int
       maximum running gevent number.  
     '''
@@ -97,7 +99,7 @@ class ScraperGeventQueue(object):
         # if connect error, add the parameters into queue once again
         if (not scraper.json) and (task not in self.failure_list):
             self.failure_list.append(task)
-            self.tasks.put(task)
+            self.tasks.put_nowait(task)
             
         data_list = scraper.parseJSON(scraper.json)
         #indicator = scraper.writeMongoDB(data_list)
@@ -107,7 +109,7 @@ class ScraperGeventQueue(object):
         if (page_num == 1) and indicator:
             total_page = scraper.getTotalPageNumber()
             if total_page>1:
-                [self.tasks.put((category_name,area_info,i)) for i in range(2,total_page+1)]
+                [self.tasks.put_nowait((category_name,area_info,i)) for i in range(2,total_page+1)]
         
     def worker(self):
         'A gevent worker.'
