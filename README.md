@@ -3,8 +3,8 @@
 ## Project Document
 ====
  * Project Name: RTMartScraper
- * Version: 1.0
- * Author：Guo Zhang,Chen Qian
+ * Version: 1.1
+ * Author：Guo Zhang,Chen Qian,Xingjianlin
  * Contributor: 
  * Data: 2016-07-24
  * Python version: 2.7.9 
@@ -26,6 +26,13 @@
   * headers.py (user-agents,mobile user-agents and proxies for request headers) 
   * checkedProxies & proxies (IP proxies pool)
   
+* serverManager(manager scraper on the server)
+  * emailSending.py (send daily data and log with emails)
+  * tmallscraper.sh (run the scraper)
+  * tmallrar.sh (zip data)
+  * tmallemail.sh (send daily emails)
+  * crontab.md (guidance for make timing process)
+  
  -----
 
 
@@ -40,5 +47,7 @@
 
 ## CHANGELOG
 ====
+* Version 1.1: 2016-7-24
+  * 增加serverManager
 * Version 1.0: 2016-7-24
   * 创建项目
