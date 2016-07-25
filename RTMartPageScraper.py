@@ -56,6 +56,7 @@ class RTMartPageScraper(object):
      Parameters
      ----------
       category_name: keyword in the search page of RT-Mart.
+      area_info: area information for the APP.
       page_num: page number of the certain category.
     '''
     
@@ -132,7 +133,6 @@ class RTMartPageScraper(object):
                              
         user_agent = random.choice(MOBILE_USER_AGENTS)
         proxy =re.sub('\n','',random.choice(PROXIES))
-  
 
         headers = {
                 'Host': 'www-fnapp.feiniu.com',
@@ -152,7 +152,7 @@ class RTMartPageScraper(object):
             return r.json()
         except (requests.exceptions.ConnectionError, requests.exceptions.ReadTimeout),e:
             self.log_time = '[{} {}]'.format(self.present_day,str(time.strftime('%H:%M:%S',time.localtime(time.time()))))
-            print('%s,%s,%s,%s,connect error'%(self.log_time,self.category_name.encode('utf-8'),self.area_info[0].encode('utf-8'),str(self.page_num),e))
+            print('%s,%s,%s,%s,connect error,%s'%(self.log_time,self.category_name.encode('utf-8'),self.area_info[0].encode('utf-8'),str(self.page_num),e))
             return None
         
     def getTotalPageNumber(self):
@@ -186,7 +186,7 @@ class RTMartPageScraper(object):
         
     def parseJSON(self,json):
         '''
-        parse a page JSON for TmallScraper.
+        parse a page JSON for RTMartScraper.
         
          Parameters
          ----------

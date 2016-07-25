@@ -102,8 +102,8 @@ class ScraperGeventQueue(object):
             self.tasks.put_nowait(task)
             
         data_list = scraper.parseJSON(scraper.json)
-        #indicator = scraper.writeMongoDB(data_list)
-        indicator = scraper.writeCSV(data_list)
+        indicator = scraper.writeMongoDB(data_list)
+        #indicator = scraper.writeCSV(data_list)
         
         # produce new parameters and add them to the gevent queue
         if (page_num == 1) and indicator:
